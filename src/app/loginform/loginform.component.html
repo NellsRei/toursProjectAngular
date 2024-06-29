@@ -1,0 +1,13 @@
+<!-- <p>loginform works!</p> -->
+<div class="login-form" id="login-form">
+    <a href="" onclick="closeform()">X</a>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <label for="email">Email</label>
+        <span *ngIf="form.get('email')?.touched && !form.get('email')?.valid"><i>Email is required!!!!</i></span>
+        <input type="email" formControlName="Email" required>
+        <label for="password">Password</label>
+        <span *ngIf="form.get('password')?.touched && !form.get('password')?.valid"><i>Password is required!!!!</i></span>
+        <input type="password" formControlName="Password" required>
+        <button [disabled]="!form.valid" type="submit">Login</button>
+    </form>
+</div>

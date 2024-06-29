@@ -1,0 +1,22 @@
+<!-- <p>hotels works!</p> -->
+<div class="hotelcont">
+    <h1><u>Booking Form</u></h1>
+    <p class="title">Available Hotels</p>
+    <div class="listofHotels">
+      <div *ngFor="let hotel of filteredHotels" class="hotels">
+        <h3>Hotel Name:{{ hotel.hotelname }}</h3>
+        <p>Location:{{ hotel.location }}</p>
+        <p>Rating:{{hotel.rating}}</p>
+        <button class="addhotel" (click)="selectHotel(hotel, hotel.hotelid)">Book Hotel</button>
+      </div>
+    </div>
+    <div *ngIf="selectedHotel" class="booking-form">
+      <h3>Book  {{selectedHotel.hotelname}}</h3>
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+        <label for="date">Check-in Date:</label>
+        <input id="date" formControlName="date" type="date" required>
+        <button type="submit" class="confirmbook">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+  

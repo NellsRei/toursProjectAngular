@@ -1,0 +1,89 @@
+<body>
+    <header class="header">
+        <div class="logo">
+            <a [routerLink]="[' ']" routerLinkActive="active">VoyageVista</a>
+        </div>
+        <div class="navs">
+            <p class="username">{{username}}</p>
+            <a (click)="scrollToSection('userinfo')">Info</a>
+            <a (click)="scrollToSection('tours')">Tours</a>
+            <a (click)="scrollToSection('hotels')">Hotels</a>
+            <a (click)="scrollToSection('bookings')">Bookings</a>
+            <a (click)="scrollToSection('users')">Users</a>
+
+        </div>
+    </header>
+    <section class="userinfo" id="userinfo">
+        <div class="usercont">
+            <div class="btns">
+                <button class="userup">Update Credentials</button>
+                <button class="userdel">Delete Account</button>
+            </div>
+            <div *ngFor="let user of allUsers" class="info" >
+                <h1>ACCOUNT PAGE</h1>
+                <p>Username: {{user.username}}</p>
+                <p>Email:{{user.Email}}</p>
+                <p>Password:{{user.Password}}</p>
+                <p class="status">Status:{{user.role}}</p>
+            </div>
+        </div>
+    </section>
+    <section class="tours" id="tours">
+        <div class="tourscont">
+            <div class="admintouradd">
+                <button>Add a tour</button>
+            </div>
+            <div *ngFor="let tour of Tours" class="tourcard">
+                <p>Name: {{tour.tourname}}</p>
+                <p>Destination: {{tour.destination}}</p>
+                <p>Description: {{tour.description}}</p>
+                <p>Price: {{tour.price}}</p>
+                <button>Update Tour</button>
+                <button>Delete Tour</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="hotels" id="hotels">
+        <div class="admintouradd">
+            <button>Add a Hotel</button>
+        </div>
+        <div class="hotelscont">
+            <div *ngFor="let hotel of Hotels" class="hotelinfo">
+                <p>Name: {{hotel.hotelname}}</p>
+                <p>Location: {{hotel.location}}</p>
+                <p>Rating: {{hotel.rating}}</p>
+                <button>Update Hotel</button>
+                <button>Delete Hotel</button>
+            </div>
+        </div>
+    </section>
+    <section class="bookings" id="bookings">
+        <div class="bookingscont">
+            <div class="bookinginfo">
+                <p>Booking 1: Booking Description</p>
+                <p>Booking 2: Booking Description</p>
+            </div>
+        </div>
+    </section>
+    <section class="users" id="users">
+        <div class="userscont">
+            <div *ngFor="let all of allUsers"class="userinfo" >
+                <p>Username:{{all.username}}</p>
+                <p>Email:{{all.Email}}</p>
+                <p>Role:{{all.role}}</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('.header')
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled')
+            } else {
+                header.classList.remove('scrolled')
+            }
+        })
+    </script>
+</body>

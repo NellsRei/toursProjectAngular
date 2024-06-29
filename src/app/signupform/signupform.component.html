@@ -1,0 +1,19 @@
+<!-- <p>signupform works!</p> -->
+<div class="signup-form" id="signup-form">
+    <a href="" onclick="closeform()">X</a>
+    <div class="errormessage"></div>  
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <label for="name">Username</label>
+        <span *ngIf="form.get('username')?.touched && !form.get('username')?.valid"><i>Username is required!!!!</i></span>
+        <input type="text" formControlName="username" required>
+        <label for="email">Email</label>
+        <span *ngIf="form.get('Email')?.touched && !form.get('Email')?.valid"><i>Email is required!!!!</i></span>
+        <input type="email" formControlName="Email" required>
+        <label for="password">Password</label>
+        <span *ngIf="form.get('Password')?.touched && !form.get('Password')?.valid"><i>Password is required!!!!</i></span>
+        <input type="password" formControlName="Password" required>
+        <button [disabled]="!form.valid" type="submit" id="signupbtn">Sign Up</button>
+        <p>Already have an account?</p>
+        <a [routerLink]="['/login']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><p>Log In</p></a>
+    </form> 
+</div>

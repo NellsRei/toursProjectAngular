@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap');
+.header {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 25px;
+    position: sticky;
+    top: 0;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8); 
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: padding 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    width: 100vw;
+}
+
+.header.scrolled {
+    padding: 10px 25px;
+    background-color: white;
+    color: black;
+}
+
+.logo a {
+    color: black;
+    word-spacing: 10px;
+    font-size: xx-large;
+    text-decoration: none;
+}
+
+.header.scrolled .logo a {
+    color: black;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: gray;
+    cursor: pointer;
+}
+.active{
+    color: red;
+}
+.username{
+    font-family: "Playwrite NG Modern", cursive;
+    color: blue;
+}

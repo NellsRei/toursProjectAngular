@@ -1,0 +1,16 @@
+<!-- <p>header works!</p> -->
+<header class="header">
+    <div class="logo">
+        <a href="#homecontainer">VoyageVista</a>
+    </div>
+    <div class="links">
+        <a href="#booktour">Book a tour</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact Us</a>
+        <!-- <a href="#" onclick="toggleForm()">Sign up</a> -->
+        <a [routerLink]="['/signupform']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Sign up</a>
+        <a [routerLink]="['/account']"><p class="username">{{username}}</p></a>
+        
+        <!-- <a [routerLink]="['/notfound']" routerLinkActive="active">Not Found</a> -->
+    </div>
+</header>

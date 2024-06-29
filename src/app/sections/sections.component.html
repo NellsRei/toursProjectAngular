@@ -1,0 +1,47 @@
+<!-- <p>sections works!</p> -->
+<main>
+    <section class="homecontainer" id="homecontainer">
+        <div class="slogan">
+            <h2>Explore The World With Ease</h2>
+        </div>
+    </section>
+    <section class="booktour" id="booktour">
+        <h2><strong><u>EXPLORE OUR TOURS</u></strong></h2>
+        <div class="tourcards" >
+            <div class="tours" *ngFor="let tour of Tours">
+                <img src="https://images.unsplash.com/photo-1512704515581-de233a09dae8?q=80&w=1520&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <p>Name:{{tour.tourname}}</p>
+                <p>Destination: {{tour.destination}}</p>
+                <p>Description: {{tour.description}}</p>
+                <p>Price: {{tour.price}}</p>
+                <button class="addtour"[routerLink]="['booking']" [queryParams]="{ destination: tour.destination }" (click)="selectedTour(tour.tourid)">Book Tour</button>
+            </div>
+            <!-- <div class="tours">
+                <img src="https://images.unsplash.com/photo-1566865204669-c7b93be298bd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHRvdXJzfGVufDB8fDB8fHww" alt="">
+                <p>Name:Eiffel Tour</p>
+                <p>Destination:Paris</p>
+                <p>Description:Visit the city of love</p>
+                <p>Price:1000000</p>
+                <button class="addtour"[routerLink]="['booking']" [queryParams]="{ destination: 'Paris' }">Book Tour</button>
+
+            </div> -->
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="about-text">
+            <p>VoyageVista is your ultimate travel companion, dedicated to simplifying your journey from dream to reality.
+            <br> Our platform not only offers a seamless booking experience for tours but also integrates effortlessly with top hotels worldwide.
+            <br>Whether you're seeking a thrilling excursion or a tranquil escape, VoyageVista collaborates with renowned hotels to enhance your travel plans. 
+            <br>Trust us to connect you with curated tours and accommodations, ensuring every trip is as convenient as it is unforgettable. 
+            <br>Embrace the world of travel with confidence and embark on your next adventure with VoyageVista.
+            </p>
+        </div>
+    </section>
+    <footer class="contact" id="contact">
+        <p>&#64;Copyright 2024</p>
+        <p>Made Proudly by Nelly</p>
+        <p>Contact me: email&#64;gmail.com</p>
+        <div class="icons">   
+        </div>
+    </footer>
+</main>
