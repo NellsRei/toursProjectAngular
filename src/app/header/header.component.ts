@@ -18,4 +18,7 @@ export class HeaderComponent implements OnInit{
     console.log(this.username)
     
   }
+  logout(){
+    sessionStorage.clear()
+  }
 }

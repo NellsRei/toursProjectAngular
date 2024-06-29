@@ -25,5 +25,7 @@ export interface LoginReq{
 
 export interface LoginRes{
     Message:string,
-    token:string
+    token:string,
+    role:string,
+    username:string
 }

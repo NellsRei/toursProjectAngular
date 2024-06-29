@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AuthenticationService } from '../Services/AuthenticationService/authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../Models/userModel';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -27,11 +28,12 @@ export class LoginformComponent implements OnInit{
   onSubmit(){
     console.log(this.form)
     this.auth.loginUser(this.form.value).subscribe(res =>{
-      // console.log("trial1")
+      console.log("trial1")
       localStorage.setItem('token',res.token)
-      // sessionStorage.setItem('userid',)
-      // console.log(res.userid)
-      
+      localStorage.setItem('role', res.role)
+      sessionStorage.setItem('username', res.username)
+      // console.log(res.role)
+      console.log(res.username)
       
       this.message = res.Message
 

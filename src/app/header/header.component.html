@@ -9,8 +9,9 @@
         <a href="#contact">Contact Us</a>
         <!-- <a href="#" onclick="toggleForm()">Sign up</a> -->
         <a [routerLink]="['/signupform']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Sign up</a>
-        <a [routerLink]="['/account']"><p class="username">{{username}}</p></a>
+        <a [routerLink]="['/userinfo']"><p class="username">{{username}}</p></a>
+        <a [routerLink]="['/account']"><p>Admin</p></a>
         
-        <!-- <a [routerLink]="['/notfound']" routerLinkActive="active">Not Found</a> -->
+        <a [routerLink]="['']" routerLinkActive="active" (click)="logout()">Logout</a>
     </div>
 </header>

@@ -1,11 +1,10 @@
-<body>
+<body>  
     <header class="header">
         <div class="logo">
             <a [routerLink]="[' ']" routerLinkActive="active">VoyageVista</a>
         </div>
         <div class="navs">
             <p class="username">{{username}}</p>
-            <a (click)="scrollToSection('userinfo')">Info</a>
             <a (click)="scrollToSection('tours')">Tours</a>
             <a (click)="scrollToSection('hotels')">Hotels</a>
             <a (click)="scrollToSection('bookings')">Bookings</a>
@@ -13,21 +12,7 @@
 
         </div>
     </header>
-    <section class="userinfo" id="userinfo">
-        <div class="usercont">
-            <div class="btns">
-                <button class="userup">Update Credentials</button>
-                <button class="userdel">Delete Account</button>
-            </div>
-            <div *ngFor="let user of allUsers" class="info" >
-                <h1>ACCOUNT PAGE</h1>
-                <p>Username: {{user.username}}</p>
-                <p>Email:{{user.Email}}</p>
-                <p>Password:{{user.Password}}</p>
-                <p class="status">Status:{{user.role}}</p>
-            </div>
-        </div>
-    </section>
+    
     <section class="tours" id="tours">
         <div class="tourscont">
             <div class="admintouradd">
@@ -39,7 +24,7 @@
                 <p>Description: {{tour.description}}</p>
                 <p>Price: {{tour.price}}</p>
                 <button>Update Tour</button>
-                <button>Delete Tour</button>
+                <button (click)="delete(tour.tourid)">Delete Tour</button>
             </div>
         </div>
     </section>
@@ -54,7 +39,7 @@
                 <p>Location: {{hotel.location}}</p>
                 <p>Rating: {{hotel.rating}}</p>
                 <button>Update Hotel</button>
-                <button>Delete Hotel</button>
+                <button (click)="delete(hotel.hotelid)">Delete Hotel</button>
             </div>
         </div>
     </section>

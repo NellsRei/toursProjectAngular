@@ -12,11 +12,8 @@ export class UsersService {
   constructor(private http:HttpClient) { }
 
   getUsersDetails(): Observable<User[]> {
-    const token = localStorage.getItem('token') as string
-    return this.http.get<User[]>(this.userURL,{
-      headers:new HttpHeaders({
-        token: token
-      })
-    })
+    return this.http.get<User[]>(this.userURL)
   }
+
 }
+

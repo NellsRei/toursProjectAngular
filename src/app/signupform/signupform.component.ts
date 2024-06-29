@@ -31,7 +31,7 @@ export class SignupformComponent implements OnInit {
       
       console.log (res.Message)
        // Store the username in session storage
-      sessionStorage.setItem('username', this.form.value.username)
+      // sessionStorage.setItem('username', this.form.value.username)
       this.router.navigate(['/login'])
       
       
@@ -40,7 +40,7 @@ export class SignupformComponent implements OnInit {
   passwordValidator(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
     if (value == undefined) {
-      console.log('Value undefined');
+      // console.log('Value undefined');
       return { passwordValidator: true }; // Or handle this case as per your application's logic
     }
     let hasDigit = false;

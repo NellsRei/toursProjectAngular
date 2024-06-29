@@ -45,7 +45,17 @@ export class AccountComponent implements OnInit{
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+  }
+  delete(id:string):void{
+    this.hotelService.deleteHotel(id).subscribe(() => {
+      this.Hotels = this.Hotels.filter(hotel => hotel.hotelid !== id)
+      console.log('Hotel deleted successfully')
+    })
+    this.tourService.deleteTour(id).subscribe(() =>{
+      this.Tours = this.Tours.filter(tour => tour.tourid !== id)
+      console.log('Tour deleted successfully')
+    })
   }
 }

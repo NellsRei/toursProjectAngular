@@ -1,0 +1,15 @@
+<section class="userinfo" id="userinfo">
+    <div class="usercont">
+        <div class="btns">
+            <button class="userup">Update Credentials</button>
+            <button class="userdel">Delete Account</button>
+        </div>
+        <div *ngFor="let user of allUsers" class="info" >
+            <h1>ACCOUNT PAGE</h1>
+            <p>Username: {{user.username}}</p>
+            <p>Email:{{user.Email}}</p>
+            <p>Password:{{user.Password}}</p>
+            <p class="status">Status:{{user.role}}</p>
+        </div>
+    </div>
+</section>

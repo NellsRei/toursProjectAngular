@@ -8,10 +8,14 @@ import { Hotel } from '../../Models/hotelModel';
 })
 export class HotelServiceService {
 
-  private readonly hotelURL = "http://localhost:3005/hotel"
+  private readonly hotelsURL = "http://localhost:3005/hotel"
+  private readonly hotelUrl = "http://localhost:3005/hotel/:id"
   constructor(private http:HttpClient) { }
 
   getHotels(): Observable<Hotel[]> {
-    return this.http.get<Hotel[]>(this.hotelURL)
+    return this.http.get<Hotel[]>(this.hotelsURL)
+  }
+  deleteHotel(id: string): Observable<void> {
+    return this.http.delete<void>(this.hotelUrl)
   }
 }
