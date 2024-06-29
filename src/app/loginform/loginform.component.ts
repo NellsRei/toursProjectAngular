@@ -31,6 +31,7 @@ export class LoginformComponent implements OnInit{
       console.log("trial1")
       localStorage.setItem('token',res.token)
       localStorage.setItem('role', res.role)
+      // localStorage.setItem('id', res.)
       sessionStorage.setItem('username', res.username)
       // console.log(res.role)
       console.log(res.username)

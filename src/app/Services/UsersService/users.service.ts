@@ -8,10 +8,14 @@ import { User } from '../../Models/userModel';
 })
 export class UsersService {
 
-  private readonly userURL = "http://localhost:3005/users"
+  private readonly usersURL = "http://localhost:3005/users"
+  private readonly userURL = "http://localhost:3005/users/:id"
   constructor(private http:HttpClient) { }
 
   getUsersDetails(): Observable<User[]> {
+    return this.http.get<User[]>(this.usersURL)
+  }
+  getUserDetails(): Observable<User[]> {
     return this.http.get<User[]>(this.userURL)
   }
 
