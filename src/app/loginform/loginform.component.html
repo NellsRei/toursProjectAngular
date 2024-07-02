@@ -1,6 +1,7 @@
 <!-- <p>loginform works!</p> -->
 <div class="login-form" id="login-form">
     <a href="" onclick="closeform()">X</a>
+    <p>{{error$ | async}}</p>
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <label for="email">Email</label>
         <span *ngIf="form.get('email')?.touched && !form.get('email')?.valid"><i>Email is required!!!!</i></span>
