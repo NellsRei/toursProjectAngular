@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UsersService } from '../Services/UsersService/users.service';
 import { User } from '../Models/userModel';
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,7 @@ import { Hotel } from '../Models/hotelModel';
 export class AccountComponent implements OnInit{
 
   username: string | null = ''
-  constructor(private usersService:UsersService, private tourService:ToursService, private hotelService:HotelServiceService){}
+  constructor(private usersService:UsersService, private tourService:ToursService, private hotelService:HotelServiceService, private router:Router){}
   allUsers:User[] = []
   Tours:Tour[]= []
   Hotels:Hotel[] = []
@@ -86,6 +86,8 @@ export class AccountComponent implements OnInit{
       console.log(res.Message)
 
     })
+    this.form.reset()
+    this.router.navigate(['/account'])
   }
 
   editTour(i:number){

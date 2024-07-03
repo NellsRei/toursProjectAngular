@@ -36,7 +36,7 @@
           <span *ngIf="form.get('price')?.touched && !form.get('price')?.valid"><i>Tour Price is required!!!!</i></span>
           <label for="tourprice">Tour Price:</label>
           <input type="text" formControlName="price" required>
-          <button (click)="addTour()">Submit</button>
+          <button (click)="addTour()"[disabled]="form.invalid">Submit</button><!-- for ensuring that thee form isn't empty when submitting -->
         </form>
       </div>
   
