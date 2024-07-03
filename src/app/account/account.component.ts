@@ -3,9 +3,9 @@ import { RouterLink } from '@angular/router';
 import { UsersService } from '../Services/UsersService/users.service';
 import { User } from '../Models/userModel';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToursService } from '../Services/TourServices/tours.service';
-import { Tour } from '../Models/tourModel';
+import { Tour, TourReq } from '../Models/tourModel';
 import { HotelServiceService } from '../Services/HotelServices/hotel-service.service';
 import { Hotel } from '../Models/hotelModel';
 
@@ -23,6 +23,8 @@ export class AccountComponent implements OnInit{
   allUsers:User[] = []
   Tours:Tour[]= []
   Hotels:Hotel[] = []
+  form!:FormGroup
+  formVisible: boolean = false
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username')
@@ -34,11 +36,19 @@ export class AccountComponent implements OnInit{
     })
     this.tourService.getTours().subscribe(data => {
       this.Tours = data
-    }) 
+    })
     this.hotelService.getHotels().subscribe(hotel =>{
       this.Hotels = hotel
     })
 
+    //for the addtourform
+    this.form = new FormGroup({
+      tourname : new FormControl(null, Validators.required),
+      destination : new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required),
+    }
+  )
 
     
   }
@@ -51,11 +61,34 @@ export class AccountComponent implements OnInit{
   delete(id:string):void{
     this.hotelService.deleteHotel(id).subscribe(() => {
       this.Hotels = this.Hotels.filter(hotel => hotel.hotelid !== id)
-      console.log('Hotel deleted successfully')
+      // console.log('Hotel deleted successfully')
     })
-    this.tourService.deleteTour(id).subscribe(() =>{
-      this.Tours = this.Tours.filter(tour => tour.tourid !== id)
+    this.tourService.deleteTour(id).subscribe(
+      () =>{
+    //   this.Tours = this.Tours.filter(tour => tour.tourid !== id)
       console.log('Tour deleted successfully')
+  }
+  )
+  }
+  //ensures the addtourform is visible only when the addtour btn is clicked
+  toggleFormVisibility() {
+    this.formVisible = !this.formVisible;
+  }
+  addTour(){
+    const newTour:TourReq = this.form.value
+    // console.log("You're about to add a tour")
+    this.tourService.addTour(newTour)
+    console.log(newTour)
+    
+  }
+  onSubmit(){
+    this.tourService.addTour(this.form.value).subscribe(res =>{
+      console.log(res.Message)
+
     })
+  }
+
+  editTour(i:number){
+    console.log(i)
   }
 }

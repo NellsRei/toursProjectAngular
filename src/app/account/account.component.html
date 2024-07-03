@@ -1,74 +1,100 @@
-<body>  
+<body>
     <header class="header">
-        <div class="logo">
-            <a [routerLink]="[' ']" routerLinkActive="active">VoyageVista</a>
-        </div>
-        <div class="navs">
-            <p class="username">{{username}}</p>
-            <a (click)="scrollToSection('tours')">Tours</a>
-            <a (click)="scrollToSection('hotels')">Hotels</a>
-            <a (click)="scrollToSection('bookings')">Bookings</a>
-            <a (click)="scrollToSection('users')">Users</a>
-
-        </div>
+      <div class="logo">
+        <a [routerLink]="['']" routerLinkActive="active">VoyageVista</a>
+      </div>
+      <div class="navs">
+        <p class="username">{{username}}</p>
+        <a (click)="scrollToSection('tours')">Tours</a>
+        <a (click)="scrollToSection('hotels')">Hotels</a>
+        <a (click)="scrollToSection('bookings')">Bookings</a>
+        <a (click)="scrollToSection('users')">Users</a>
+      </div>
     </header>
-    
+  
     <section class="tours" id="tours">
-        <div class="tourscont">
-            <div class="admintouradd">
-                <button>Add a tour</button>
-            </div>
-            <div *ngFor="let tour of Tours" class="tourcard">
-                <p>Name: {{tour.tourname}}</p>
-                <p>Destination: {{tour.destination}}</p>
-                <p>Description: {{tour.description}}</p>
-                <p>Price: {{tour.price}}</p>
-                <button>Update Tour</button>
-                <button (click)="delete(tour.tourid)">Delete Tour</button>
-            </div>
+      <div class="admintouradd">
+        <button (click)="toggleFormVisibility()">Add a tour</button>
+      </div>
+  
+      <!-- Overlay -->
+      <div *ngIf="formVisible" class="overlay" (click)="toggleFormVisibility()"></div>
+  
+      <div class="addtourform" *ngIf="formVisible">
+        <h2>Add Tour Form</h2>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div class="errormessage"></div>
+          <span *ngIf="form.get('tourname')?.touched && !form.get('tourname')?.valid"><i>Tour Name is required!!!!</i></span>
+          <label for="tourname">Tour Name:</label>
+          <input type="text" formControlName="tourname" required>
+          <span *ngIf="form.get('destination')?.touched && !form.get('destination')?.valid"><i>Tour Destination is required!!!!</i></span>
+          <label for="tourdestination">Tour Destination:</label>
+          <input type="text" formControlName="destination" required>
+          <span *ngIf="form.get('description')?.touched && !form.get('description')?.valid"><i>Tour Description is required!!!!</i></span>
+          <label for="tourdescription">Tour Description:</label>
+          <input type="text" formControlName="description" required>
+          <span *ngIf="form.get('price')?.touched && !form.get('price')?.valid"><i>Tour Price is required!!!!</i></span>
+          <label for="tourprice">Tour Price:</label>
+          <input type="text" formControlName="price" required>
+          <button (click)="addTour()">Submit</button>
+        </form>
+      </div>
+  
+      <div class="tourscont">
+        <div *ngFor="let tour of Tours; let i = index" class="tourcard">
+          <p>Name: {{tour.tourname}}</p>
+          <p>Destination: {{tour.destination}}</p>
+          <p>Description: {{tour.description}}</p>
+          <p>Price: {{tour.price | currency}}</p>
+          <button (click)="editTour(i)">Update Tour</button>
+          <button (click)="delete(tour.tourid)">Delete Tour</button>
         </div>
+      </div>
     </section>
-    
+  
     <section class="hotels" id="hotels">
-        <div class="admintouradd">
-            <button>Add a Hotel</button>
+      <div class="admintouradd">
+        <button>Add a Hotel</button>
+      </div>
+      <div class="hotelscont">
+        <div *ngFor="let hotel of Hotels" class="hotelinfo">
+          <p>Name: {{hotel.hotelname}}</p>
+          <p>Location: {{hotel.location}}</p>
+          <p>Rating: {{hotel.rating}}</p>
+          <button>Update Hotel</button>
+          <button (click)="delete(hotel.hotelid)">Delete Hotel</button>
         </div>
-        <div class="hotelscont">
-            <div *ngFor="let hotel of Hotels" class="hotelinfo">
-                <p>Name: {{hotel.hotelname}}</p>
-                <p>Location: {{hotel.location}}</p>
-                <p>Rating: {{hotel.rating}}</p>
-                <button>Update Hotel</button>
-                <button (click)="delete(hotel.hotelid)">Delete Hotel</button>
-            </div>
-        </div>
+      </div>
     </section>
+  
     <section class="bookings" id="bookings">
-        <div class="bookingscont">
-            <div class="bookinginfo">
-                <p>Booking 1: Booking Description</p>
-                <p>Booking 2: Booking Description</p>
-            </div>
+      <div class="bookingscont">
+        <div class="bookinginfo">
+          <p>Booking 1: Booking Description</p>
+          <p>Booking 2: Booking Description</p>
         </div>
+      </div>
     </section>
+  
     <section class="users" id="users">
-        <div class="userscont">
-            <div *ngFor="let all of allUsers"class="userinfo" >
-                <p>Username:{{all.username}}</p>
-                <p>Email:{{all.Email}}</p>
-                <p>Role:{{all.role}}</p>
-            </div>
+      <div class="userscont">
+        <div *ngFor="let all of allUsers" class="userinfo">
+          <p>Username: {{all.username}}</p>
+          <p>Email: {{all.Email}}</p>
+          <p>Role: {{all.role}}</p>
         </div>
+      </div>
     </section>
-
+  
     <script>
-        window.addEventListener('scroll', function () {
-            var header = document.querySelector('.header')
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled')
-            } else {
-                header.classList.remove('scrolled')
-            }
-        })
+      window.addEventListener('scroll', function () {
+        var header = document.querySelector('.header')
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled')
+        } else {
+          header.classList.remove('scrolled')
+        }
+      })
     </script>
-</body>
+  </body>
+  

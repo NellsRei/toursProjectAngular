@@ -192,3 +192,42 @@ button:hover{
 .tours p {
     margin-bottom: 10px;
 }
+/* Styles for the addtourform */
+.addtourform {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000; /* Ensure it appears above other content */
+    height: 100vh;
+}
+  
+.addtourform h2 {
+    margin-top: 0;
+}
+  
+.addtourform label,
+.addtourform input {
+    display: block;
+    margin-bottom: 10px;
+}
+  
+.addtourform .errormessage {
+    color: red;
+}
+  
+  /* Optional: Overlay to darken the background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Just below the form */
+}
+  
